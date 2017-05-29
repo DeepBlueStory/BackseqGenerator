@@ -37,3 +37,4 @@ inline int DNATo0123(char c) {
     return (c & 6) >> 1;
   }
 }
+

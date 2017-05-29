@@ -9,16 +9,6 @@
 
 #include "read_file_mmap.h"
 
-class ReadFasta: public ReadFileMmap{
-private:
-  const char* string_;
-  off_t length_;
-public:
-  ReadFasta(const char* file_path);
-  const char& operator[](off_t i);
-  const char* c_str();
-  off_t GetChromosomeLength();
-};
 
 namespace blueseq {
 // Read Fasta file based on ReadFileMmap.
