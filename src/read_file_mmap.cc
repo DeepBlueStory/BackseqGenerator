@@ -12,33 +12,40 @@
 
 #include "read_file_mmap.h"
 
-ReadFileMmap::ReadFileMmap(const char* file_path) :
-  file_descriptor_(0),
-  start_(NULL) {
+
+bool blue::ReadFileMmap::Open(const char *file_path) {
   file_descriptor_ = open(file_path, O_RDONLY);
-  if(file_descriptor_ == -1) {
+  if (file_descriptor_ == -1) {
     printf("error in open file %s, errno: %d\n", file_path, errno);
-  }
-  else {
+    return false;
+  } else {
     fstat(file_descriptor_, &stat_block_);
-    start_ = mmap(NULL, stat_block_.st_size, PROT_READ, MAP_PRIVATE,
-                  file_descriptor_, 0);
-    if(start_ == MAP_FAILED) {
-      printf("error in mmap file %s, errno: %d\n", file_path, errno);
-      start_ = NULL;
-    }
+    data_pointer_ = mmap(
+      NULL, 
+      stat_block_.st_size, 
+      PROT_READ, 
+      MAP_PRIVATE,
+      file_descriptor_,
+      0
+    );
+    if (data_pointer_ == MAP_FAILED) {
+      printf("error in mmap, errno: %d\n", errno);
+      data_pointer_ = nullptr;
+      return false;
+    }    
   }
+  return true;
 }
 
-ReadFileMmap::~ReadFileMmap() {
-  munmap(start_, stat_block_.st_size);
+blue::ReadFileMmap::~ReadFileMmap() {
+  munmap(data_pointer_, stat_block_.st_size);
   close(file_descriptor_);
 }
 
-const void* ReadFileMmap::GetDataPointer() {
-  return start_;
+const void* blue::ReadFileMmap::GetDataPointer() {
+  return data_pointer_;
 }
 
-off_t ReadFileMmap::GetFileSize() {
+off_t blue::ReadFileMmap::GetFileSize() {
   return stat_block_.st_size;
 }

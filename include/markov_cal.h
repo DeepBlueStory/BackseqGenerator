@@ -6,7 +6,7 @@
 #define MARKOV_CAL_H
 
 namespace blueseq {
-// Calculate two 
+// Calculate two DNA
 }
 //euclidean distance with no sqrt.
 double EuclideanDistance(const int* left, const int* right, int size);
