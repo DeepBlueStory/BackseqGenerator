@@ -2,6 +2,7 @@
 //Author: Li Ning
 
 #include <algorithm>
+#include <vector>
 #include "aid_struct.h"
 
 
@@ -35,4 +36,8 @@ blueseq::NegAltSeq::PushPotSeq(NegPotSeq&& entity) {
 
 bool blueseq::NegAltSeq::CompareScore(const NegPotSeq& left, const NegPotSeq& right) {
   return left.score_ > right.score_;
+}
+
+const std::vector<NegPotSeq>& blueseq::NegAltSeq::GetAltSeq() {
+  return max_heap_;
 }

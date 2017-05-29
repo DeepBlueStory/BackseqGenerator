@@ -15,6 +15,9 @@ namespace blueseq {
 typedef std::string::size_type StrPosType;
 const double DOUBLEMAX = std::numeric_limits<double>::max()
 
+struct SubSeq {
+  
+};
 
 // For every posssible subsequence, we need to now the position in chrome,
 // and the score of similarirty between input sequence's markov and its.
@@ -43,16 +46,20 @@ public:
   double GetMaxScore() const;
   // Push a potentail negative subsequence in the max heap.
   void PushPotSeq(NegPotSeq&& entity);
+  // Get all the seq in max heap.
+  const std::vector<NegPotSeq>& GetAltSeq();
 
 private:
   // function object for std::make_heap;
   static bool CompareScore(const NegPotSeq& left, const NegPotSeq& right);
 
+private:
   // The size of max heap.
   const std::vector<NegPotSeq>::size_type heap_size_;
   // The base structure of max heap is vector.
   std::vector<NegPotSeq> max_heap_;
 };
+
 
 } // namesapce blueseq
 
