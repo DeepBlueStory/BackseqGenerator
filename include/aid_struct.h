@@ -8,6 +8,7 @@
 #include <vector>
 #include <string>
 #include <limits>
+#include <map>
 
 namespace blueseq {
 
@@ -58,6 +59,19 @@ private:
   const std::vector<NegPotSeq>::size_type heap_size_;
   // The base structure of max heap is vector.
   std::vector<NegPotSeq> max_heap_;
+};
+
+// For every opened files, we need to recognize its file descriptor with the file name.
+// 
+// File decriptor to file name.
+class FDtoFN {
+public:
+  // Push a file descriptor and file name into map.
+  void push_back(std::pair<int, std::string> file);
+  // Get the file name
+  const std::string& operator[](int fd);
+private:
+  std::map<int, std::string> fd_fn_;
 };
 
 
