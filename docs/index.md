@@ -3,7 +3,7 @@ layout: default
 ---
 
 # [](#What is)What is BackSeq Generator?
-> In Discriminative motif discovery, TFBS (Transcription Factor Binding sites) patterns be found by common approach that maxmize the model evaluation index. Not only the computational expensive and approximate schemes will restrict the use of potential of the data, but the choose of background sequences will significantly affect the result of DMDs. And it is widely recognized that the background set need to be selected to match statistical performance of foreground sequences.
+> In discriminative motif discovery(DMD), TFBS (Transcription Factor Binding sites) patterns be found by common approach that maxmize the model evaluation index. Not only the computational expensive and approximate schemes will restrict the use of potential of the data, but the choose of background sequences will significantly affect the result of DMDs. And it is widely recognized that the background set need to be selected to match statistical performance of foreground sequences.
 
 **BacSeq Generator** is a software that can generate background sequences for DMDs efficiently in short time.
 
