@@ -13,16 +13,11 @@
  **/
 
 #include <iostream>
+#include "fasta.h"
 using namespace std;
 
-int main() {
-    off_t v1 = 99999999;
-
-    const char* str = "chr1_length_249250623";
-
-    sscanf(str, "chr1_length_%ld", &v1);
-
-    printf("%d", v1);
-
-    return 0;
+int main(int argc, char* argv[]) {
+  blue::Fasta a;
+  a.Open(argv[1]);
+  return 0;
 }

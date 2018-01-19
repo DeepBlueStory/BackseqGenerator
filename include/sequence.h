@@ -12,7 +12,7 @@
  *
  **/
 
-#ifdef SEQUENCE_H
+#ifndef SEQUENCE_H
 #define SEQUENCE_H
 
 namespace blue {
@@ -25,7 +25,7 @@ struct SubSeq {
     double score;
 
     SubSeq(int chr_name, const char* chr_p, off_t start, off_t end):
-            chr_name(chr_name), chr_p(chr_p), start(start), end(end) 
+            chr_name(chr_name), chr_p(chr_p), start(start), end(end), score(0)
         {}
 };
 }
