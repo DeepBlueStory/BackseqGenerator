@@ -19,9 +19,3 @@ struct OneNegSubSeq {
     off_t end;
 };
 
-class OneNegSubSeqCmp {
-public:
-    bool operator() (const OneNegSubSeq& left, const OneNegSubSeq& right) {
-        return left.score < right.score;
-    }
-};
