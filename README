@@ -5,15 +5,13 @@ http://www.bioconductor.org/packages/release/data/annotation/html/BSgenome.Hsapi
 
 HOW TO USE:
 ***************
-1.  
+
 ```
 make
-```
-2.  
+```  
 ```
 ./preprocess full_genome_sequences_file
 ```
-3.  
 ```
 ./backseqgenerator -r 4 -s 100 -t 10 -p pos.bed -g full_genome_sequences_file
 ```
