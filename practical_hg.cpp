@@ -21,6 +21,10 @@ void blue::PracticalHG::AddPosFile(const char* file_path) {
     ReadPosFile(file_path);
     RepPos();
     OpenNegFile(file_path);
+    for (int i = 0; i < 23; i++) {
+        printf("size:%lu\t", pos_subs_[i].size());
+    }
+    printf("\nRead positive file success.\n");
 }
 
 
@@ -54,7 +58,7 @@ void blue::PracticalHG::ReadPosFile(const char* file_path) {
   while(fgets(str, 200, fp)) {
     int chr_name_cur = 0;
     if (sscanf(str, "chr%d\t%llu\t%llu%*s", &chr_name_cur, &v1, &v2) == 3) {
-      chr_name = chr_name_cur;
+      chr_name = chr_name_cur-1;
     } else if (sscanf(str, "chrX\t%llu%llu%*s", &v1, &v2) == 2) {
       chr_name = 22;
     } else {
@@ -80,11 +84,14 @@ void blue::PracticalHG::RepPos() {
 
 
 void blue::PracticalHG::FindBackSeqs(int step) {
+    printf("Generate nagtive sequences...\n");
   if (step < 1) {
     step = 1;
   }
   for (int i = 0; i < 23; i++) {
+      printf("chromosome %d:\n", i+1);
       for (auto pos_sub : pos_subs_[i]) {
+          printf("positive sequences:%llu  --- %llu\n", pos_sub.start, pos_sub.end);
           auto markov = GenerateMarkovProperty(pos_sub);
           auto min_neg = FindNegSeqs(step, i, pos_sub.end-pos_sub.start, markov);
           WriteNegFile(min_neg);
@@ -129,6 +136,7 @@ blue::PracticalHG::FindNegSeqs(int step, int chr_name, int length, std::vector<d
         const char* chrom_p = hg_[chr_name][0].chr_p;
         off_t start = *(sub_ite++);
         off_t end = *sub_ite;
+        printf("subseq: %llu, %llu\n", start, end);
 
         std::stack<int> markov_stack;
         std::vector<double> markov_cur(1<<2*rank_, 0);

@@ -14,10 +14,10 @@ int main(int argc, char* argv[]) {
 
     while((ch = getopt(argc, argv, "t:s:r:p:g:")) != -1) {
         switch(ch) {
-            case 't': {
+            case 's': {
                 sscanf(optarg, "%d", &step);
                 break;
-            } case 's': {
+            } case 't': {
                 sscanf(optarg, "%d", &back_size);
                 break;
             } case 'r': {

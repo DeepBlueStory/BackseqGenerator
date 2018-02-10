@@ -1,1 +1,16 @@
-This is a file that for blue seq.
+REQUIRED FILE:
+***************
+The full genome sequences for Homo sapiens is needed, you can find it at following link.
+http://www.bioconductor.org/packages/release/data/annotation/html/BSgenome.Hsapiens.UCSC.hg19.html
+
+HOW TO USE:
+***************
+1. ```make```
+2. ```./preprocess full_genome_sequences_file```
+3. ```./backseqgenerator -r 4 -s 100 -t 10 -p pos.bed -g full_genome_sequences_file```
+
+-r rank of markov property
+-s step of jump calculate
+-t times of negative sequences size to positive sequences
+-p positive sequences file
+-g full genome sequences file
