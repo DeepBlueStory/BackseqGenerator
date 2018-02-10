@@ -1,5 +1,4 @@
 //Author: Li Ning
-//Date: 2017-04-09
 //Brief: read fasta file based on mmap;
 
 #ifndef FASTA_H

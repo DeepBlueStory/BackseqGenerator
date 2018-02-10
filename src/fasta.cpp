@@ -1,5 +1,4 @@
 //Author: Li Ning
-//Date: 2017-04-09
 
 #include <stdio.h>
 #include "fasta.h"
@@ -36,7 +35,7 @@ const std::vector<std::vector<std::pair<off_t, off_t>>> blue::Fasta::ReadConf() 
     printf("ERROR!!! erro in read conf\n");
     return ret;
   }
-  
+
   int chr_name = 0;
   while (fgets(str, 100, fp) != NULL) {
     off_t v1 = 0;

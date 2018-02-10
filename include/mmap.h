@@ -1,5 +1,4 @@
 //Author: Li Ning
-//Date: 2017-04-09
 //Brief: read file by mmap.
 
 #ifndef MMAP_H
@@ -12,7 +11,7 @@
 
 namespace blue {
 // read file by the mmap function.
-// Use the mmap function and munmap function to map a external storage to 
+// Use the mmap function and munmap function to map a external storage to
 // internal memory.
 class Mmap {
 public:
@@ -20,7 +19,7 @@ public:
   virtual ~Mmap();
   // Open the file and map the memory.
   bool Open(const char *file_path);
-  // Return the start pointer of data. 
+  // Return the start pointer of data.
   const void* GetData();
   // Return the file size.
   off_t GetFileSize();

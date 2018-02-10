@@ -7,42 +7,36 @@
 
 #include <vector>
 #include <queue>
+#include <set>
 #include "sequence.h"
 #include "fasta.h"
 
 namespace blue {
 
-
-class BackSSCmp {
-public:
-    bool operator() (const SubSeq& left, const SubSeq& right) {
-        return left.score < right.score;
-    }
-};
-
-
 class PracticalHG {
 public:
-  PracticalHG(int rank, int back_size, int length);
+  PracticalHG(int rank, int back_size, Fasta& hg);
   void AddPosFile(const char* file_path);
   void FindBackSeqs(int step=1);
-  void WriteNegFile(const char* file_path);
 
 private:
-  std::vector<std::vector<SubSeq>> ReadPosFile(const char* file_path);
-  void GeneratePosVec(std::vector<std::vector<SubSeq>>);
-  void RepBack(std::vector<std::vector<SubSeq>>);
-  void AddNegSeq(SubSeq, std::vector<double>);
-  
+  void ReadPosFile(const char* file_path);
+  void RepPos();
+  void OpenNegFile(const char* file_path);
+  std::vector<double> GenerateMarkovProperty(const SubSeq&);
+  std::vector<SubSeq> FindNegSeqs(int step, int chr_name, int length, std::vector<double>& markov);
+  void WriteNegFile(std::vector<SubSeq> min_neg);
+  void AddNegSeq(blue::SubSeq seq, std::vector<double> markov_cur,
+        std::vector<double>& markov, std::vector<SubSeq>& min_neg);
+
 private:
-  std::vector<double> markov_;
   int rank_;
   int mask_;
   int back_size_;
-  int length_;
-  std::vector<SubSeq> all_seqs_;
-  std::priority_queue<SubSeq, std::vector<SubSeq>, BackSSCmp> minheap_;
-  static Fasta hg_;
+  FILE * neg_fp_;
+  std::vector<std::vector<SubSeq>> pos_subs_;
+  std::vector<std::multiset<off_t>> all_seqs_;
+  Fasta& hg_;
 };  // class PracticalHG
 
 } // namespace blue.

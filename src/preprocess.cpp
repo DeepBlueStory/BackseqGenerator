@@ -97,7 +97,7 @@ void CalculateChromLength(const char* dp, off_t file_size) {
         subseq.emplace_back(std::make_pair(start, end));
       }
     }
-      
+
     printf("---> Write configuration ... %.2f%%\n", chr_name*100.0/23);
     fprintf(fp, "c%d_%llu\n", chr_name, length);
     for (auto ss : subseq) {

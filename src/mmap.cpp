@@ -1,5 +1,4 @@
 //Author: Li Ning
-//Date: 2017-04-09
 //Brief: read file by mmap.
 
 #include <sys/types.h>
@@ -21,9 +20,9 @@ bool blue::Mmap::Open(const char *file_path) {
   } else {
     fstat(file_descriptor_, &stat_block_);
     data_pointer_ = mmap(
-      NULL, 
-      stat_block_.st_size, 
-      PROT_READ, 
+      NULL,
+      stat_block_.st_size,
+      PROT_READ,
       MAP_PRIVATE,
       file_descriptor_,
       0
@@ -32,7 +31,7 @@ bool blue::Mmap::Open(const char *file_path) {
       printf("error in mmap, errno: %d\n", errno);
       data_pointer_ = nullptr;
       return false;
-    }    
+    }
   }
   return true;
 }
